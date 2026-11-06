@@ -163,14 +163,15 @@ depois de observar o resultado esperado.
   "Para a propriedade Banco, selecione um contrato de crédito aprovado.".
 - [ ] Com propriedade Banco e crédito `cc3`, o contrato é criado como
   **Ativo**, o pedido vira **Contratado** e o carro vira **Alugado**.
-- [ ] O contrato mostra propriedade Banco, proprietário `u5` e o crédito
-  `#cc3` (Banco Aurora, R$ 8.000,00 em 24 parcelas).
+- [ ] O contrato mostra propriedade Banco, o crédito `#cc3` (Banco Aurora,
+  R$ 8.000,00 em 24 parcelas) e status **Ativo**.
 - [ ] Como Locadora Move, o contrato criado mostra "Iniciar locação".
 - [ ] "Iniciar locação" muda o pedido para **Ativo** e mostra
   "Concluir locação".
 - [ ] "Concluir locação" pede confirmação, muda contrato e pedido para
   **Concluído** e libera o carro como **Disponível**.
-- [ ] A propriedade do carro (`BANK` / `u5`) é preservada após a conclusão.
+- [ ] Depois de concluir, executar `curl http://localhost:3000/cars/car3` e
+  conferir `status: AVAILABLE`, `ownerType: BANK`, `ownerId: u5`.
 - [ ] "Cancelar locação" em contrato `CONTRACTED`/`ACTIVE` muda contrato e
   pedido para **Cancelado** e libera o carro.
 - [ ] Cliente vê apenas os próprios contratos.
@@ -251,7 +252,7 @@ depois de observar o resultado esperado.
 - [ ] Nenhum carro disponível mostra "Nenhum carro disponível no momento."
   (opcional: marque todos os carros como `MAINTENANCE`/`RENTED`).
 - [ ] Nenhum cliente cadastrado mostra "Nenhum cliente cadastrado. Use
-  'Novo cliente' para começar." (opcional: `clients: []` em `db.json`).
+  “Novo cliente” para começar." (opcional: `clients: []` em `db.json`).
 - [ ] Nenhum contrato/nenhum crédito mostra a mensagem de lista vazia
   correspondente.
 
@@ -278,7 +279,7 @@ depois de observar o resultado esperado.
 - [ ] Nenhum `undefined`, `NaN` ou `[object Object]` aparece na interface.
 - [ ] **Exceção conhecida:** abrir o detalhe do contrato `ct2` registra um
   `404` para `GET /rentalRequests/r0` e um `console.error` do `orFallback`.
-  A tela mostra "Pedido arquivado" e não quebra. Registre o comportamento;
+  A tela mostra "Pedido arquivado (r0)" e não quebra. Registre o comportamento;
   não é um erro de dados do usuário.
 - [ ] Se houver erro de carregamento, a tela mostra alerta em PT-BR e, quando
   aplicável, botão "Tentar novamente".
@@ -288,7 +289,8 @@ depois de observar o resultado esperado.
 ## 15. Registro histórico `ct2`
 
 - [ ] Como Locadora Move, a lista de contratos mostra `#ct2` com
-  "Pedido arquivado" na coluna Pedido.
+  "Pedido arquivado" na coluna Pedido; o detalhe mostra
+  "Pedido arquivado (r0)".
 - [ ] `#ct2` mostra cliente Bruno Lima, carro Hyundai HB20, período
   01/11/2026 a 04/11/2026, total R$ 330,00, propriedade Locadora e status
   **Concluído**.

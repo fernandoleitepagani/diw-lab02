@@ -161,9 +161,8 @@ cliente.
    **Esperado:** toast "Contrato executado com sucesso."; URL
    `#/contracts/<novo-contrato>`; título
    "Contrato #<novo-contrato> **Ativo**"; pedido `#r3` com badge
-   **Contratado**; propriedade **Banco** e "Identificador do proprietário:
-   u5"; contrato de crédito `#cc3` **Aprovado**, "Banco Aurora · R$ 8.000,00
-   em 24 parcelas".
+   **Contratado**; propriedade **Banco**; contrato de crédito `#cc3`
+   **Aprovado**, "Banco Aurora · R$ 8.000,00 em 24 parcelas".
 
    **Estado no banco (opcional, para quem quiser conferir):**
    `r3.status = CONTRACTED`, `car3.status = RENTED`,
@@ -221,7 +220,8 @@ aprovação posterior.
    **Esperado:** "Contratos de aluguel". A linha do contrato criado no passo 3
    aparece com Carla Mendes, Chevrolet Onix, **Ativo**. A linha `#ct1` (Carla /
    Jeep Compass) também está **Ativo** e a linha `#ct2` (Bruno / Hyundai HB20)
-   está **Concluído** com "Pedido arquivado" na coluna Pedido.
+   está **Concluído**; na coluna Pedido, a lista mostra "Pedido arquivado"
+   (sem o id do pedido). O detalhe do `ct2` mostra "Pedido arquivado (r0)".
 
 2. Clique em **Ver** no contrato criado no passo 3.
    **Esperado:** "Contrato #<novo-contrato> **Ativo**"; pedido `#r3`
@@ -237,9 +237,16 @@ aprovação posterior.
    "Este contrato não está mais ativo.".
 
 5. Clique em **Carros**.
-   **Esperado:** o Chevrolet Onix volta a **Disponível**. A propriedade
-   registrada no carro continua **Banco / u5**, porque o histórico é
-   preservado.
+   **Esperado:** o Chevrolet Onix volta a **Disponível**. A tabela do agente
+   não exibe proprietário; a preservação de `ownerType`/`ownerId` é conferida
+   pela API:
+
+   ```bash
+   curl -s http://localhost:3000/cars/car3
+   ```
+
+   **Esperado no JSON:** `"status": "AVAILABLE"`, `"ownerType": "BANK"`,
+   `"ownerId": "u5"`.
 
 > Ponto de fala: concluir a locação atualiza três registros — pedido,
 > contrato e carro. O fluxo não é atômico; se uma chamada falhar no meio, as
@@ -255,9 +262,9 @@ existe mais.
 1. Ainda como Locadora Move, abra **Contratos** e clique em **Ver** na linha
    `#ct2`.
    **Esperado:** "Contrato #ct2 **Concluído**"; na linha "Pedido", o texto
-   "Pedido arquivado (r0)"; cliente Bruno Lima; carro Hyundai HB20 — MNO5P67;
-   período 01/11/2026 a 04/11/2026; total R$ 330,00; propriedade Locadora;
-   nenhum `undefined` na tela.
+   "Pedido arquivado (r0)"; cliente Bruno Lima; carro Hyundai HB20, placa
+   MNO5P67; período 01/11/2026 a 04/11/2026; total R$ 330,00; propriedade
+   Locadora; nenhum `undefined` na tela.
 
 2. No card de ações, confirme o texto
    "Pedido arquivado: não há ações disponíveis.".
