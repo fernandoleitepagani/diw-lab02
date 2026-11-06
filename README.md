@@ -36,6 +36,9 @@ A aplicação roda localmente; não há deploy público.
 - [Testes](#testes)
 - [Limitações conhecidas](#limitações-conhecidas)
 - [Documentação e decisões](#documentação-e-decisões)
+- [Links úteis](#links-úteis)
+- [Contribuição](#contribuição)
+- [Agradecimentos](#agradecimentos)
 - [Licença](#licença)
 
 ---
@@ -356,7 +359,7 @@ Os dados iniciais estão em [db.seed.json](db.seed.json). A versão de execuçã
 | **Lab02S03 — Revisão dos diagramas + protótipo para criar e visualizar status do pedido.** | Fluxo de pedidos em [requests.js](public/js/ui/views/requests.js), [request-form.js](public/js/ui/views/request-form.js) e [request-detail.js](public/js/ui/views/request-detail.js); estados em [request-state.js](public/js/domain/request-state.js). |
 | **Revisão dos diagramas de acordo com o feedback.** | Os quatro diagramas refletem o código final; decisões e mudanças estão nos [ADRs](docs/adr/0001-vanilla-js-hash-router.md) e no histórico Git. |
 | **Repositório GitHub atualizado, com modelos e código final.** | Repositório de destino: <https://github.com/fernandoleitepagani/diw-lab02>. O histórico local usa commits convencionais por etapa. |
-| **Apresentação final do protótipo, comparação com os modelos e mudanças.** | Roteiro de 5 passos na seção [Demonstração](#demonstração-em-5-passos); o roteiro detalhado e os slides serão consolidados em `docs/demo-script.md` e `docs/apresentacao.md` na etapa de apresentação. |
+| **Apresentação final do protótipo, comparação com os modelos e mudanças.** | [Roteiro detalhado da demo](docs/demo-script.md), [roteiro de slides](docs/apresentacao.md) e [checklist de testes manuais](docs/manual-test.md). A comparação modelo→código está nos [diagramas UML](docs/uml/use-cases.md) e nos [ADRs](docs/adr/0001-vanilla-js-hash-router.md). |
 
 > **Observação sobre a stack:** o enunciado cita Java/MVC. Por decisão de escopo
 > documentada no [ADR 0001](docs/adr/0001-vanilla-js-hash-router.md), a entrega
@@ -411,7 +414,8 @@ A suíte usa `node:test` e cobre apenas módulos puros de domínio:
 - `tests/pricing.test.js` — diárias, total e arredondamento.
 
 A execução atual passa com **52 testes**. Testes de DOM e E2E não fazem parte
-desta entrega; o roteiro manual será consolidado na etapa de apresentação.
+desta entrega; o roteiro manual está em
+[docs/manual-test.md](docs/manual-test.md).
 
 ---
 
@@ -443,6 +447,52 @@ desta entrega; o roteiro manual será consolidado na etapa de apresentação.
 - [ADR 0004 — Bootstrap vendorizado](docs/adr/0004-vendored-bootstrap.md)
 - [Glossário do domínio](GLOSSARY.md)
 - [Histórias de usuário](docs/user-stories.md)
+
+---
+
+## Links úteis
+
+- 🌐 **Aplicação local:** <http://localhost:3000> — após `npm start`.
+- 💻 **Repositório:** <https://github.com/fernandoleitepagani/diw-lab02>.
+- 🎬 **Roteiro de demonstração:** [docs/demo-script.md](docs/demo-script.md)
+  (5–7 minutos, com credenciais, cliques e resultados esperados).
+- 🎤 **Apresentação final:** [docs/apresentacao.md](docs/apresentacao.md).
+- ✅ **Checklist de testes manuais:** [docs/manual-test.md](docs/manual-test.md).
+- 🧭 **Diagramas UML:** [casos de uso](docs/uml/use-cases.md),
+  [classes](docs/uml/class-diagram.md),
+  [pacotes](docs/uml/package-diagram.md) e
+  [componentes](docs/uml/component-diagram.md).
+- 📚 **Documentação de apoio:** [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/)
+  e [JSON Server 0.17.4](https://github.com/typicode/json-server/tree/v0.17.4).
+
+---
+
+## Contribuição
+
+Sugestões e correções são bem-vindas para fins acadêmicos. O fluxo é o
+convencional:
+
+1. Faça um fork do repositório.
+2. Crie uma branch descritiva (`git checkout -b feature/minha-alteracao`).
+3. Implemente a mudança e rode `npm test` e, quando aplicável, o
+   [checklist de testes manuais](docs/manual-test.md).
+4. Faça commits seguindo [Conventional Commits](https://www.conventionalcommits.org/)
+   (`feat:`, `fix:`, `docs:`, `test:`).
+5. Abra um Pull Request explicando o problema e a solução.
+
+Como o projeto é uma entrega de disciplina, mudanças de escopo devem ser
+alinhadas com o autor antes de um PR maior.
+
+---
+
+## Agradecimentos
+
+- À **PUC Minas** e ao curso de **Ciência da Computação**, pela estrutura e pelo
+  apoio ao longo da disciplina.
+- Ao **Prof. João Paulo Carneiro Aramuni**, pelos ensinamentos de
+  Desenvolvimento de Interfaces Web, arquitetura e boas práticas de projeto.
+- Aos mantenedores do **Bootstrap** e do **JSON Server**, pelas ferramentas
+  abertas que tornaram o protótipo possível sem dependências pagas.
 
 ---
 
