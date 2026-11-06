@@ -1,8 +1,279 @@
 {
-  "users": [],
-  "clients": [],
-  "cars": [],
-  "rentalRequests": [],
-  "contracts": [],
-  "creditContracts": []
+  "users": [
+    {
+      "id": "u1",
+      "name": "Ana Souza",
+      "email": "ana@cliente.com",
+      "password": "123456",
+      "role": "client",
+      "clientId": "c1",
+      "agentType": null,
+      "organization": null,
+      "createdAt": "2026-11-01T10:00:00.000Z"
+    },
+    {
+      "id": "u2",
+      "name": "Bruno Lima",
+      "email": "bruno@cliente.com",
+      "password": "123456",
+      "role": "client",
+      "clientId": "c2",
+      "agentType": null,
+      "organization": null,
+      "createdAt": "2026-11-01T11:00:00.000Z"
+    },
+    {
+      "id": "u3",
+      "name": "Carla Mendes",
+      "email": "carla@cliente.com",
+      "password": "123456",
+      "role": "client",
+      "clientId": "c3",
+      "agentType": null,
+      "organization": null,
+      "createdAt": "2026-11-01T12:00:00.000Z"
+    },
+    {
+      "id": "u4",
+      "name": "Locadora Move",
+      "email": "locadora@move.com",
+      "password": "123456",
+      "role": "agent",
+      "clientId": null,
+      "agentType": "COMPANY",
+      "organization": "Locadora Move",
+      "createdAt": "2026-11-01T08:00:00.000Z"
+    },
+    {
+      "id": "u5",
+      "name": "Banco Aurora",
+      "email": "banco@aurora.com",
+      "password": "123456",
+      "role": "agent",
+      "clientId": null,
+      "agentType": "BANK",
+      "organization": "Banco Aurora",
+      "createdAt": "2026-11-01T09:00:00.000Z"
+    }
+  ],
+  "clients": [
+    {
+      "id": "c1",
+      "userId": "u1",
+      "name": "Ana Souza",
+      "rg": "12.345.678-9",
+      "cpf": "529.982.247-25",
+      "address": "Rua das Flores, 100, Belo Horizonte/MG",
+      "profession": "Analista de Sistemas",
+      "employers": [
+        { "name": "Empresa A", "income": 4500 },
+        { "name": "Empresa B", "income": 1500 }
+      ],
+      "createdAt": "2026-11-01T10:00:00.000Z"
+    },
+    {
+      "id": "c2",
+      "userId": "u2",
+      "name": "Bruno Lima",
+      "rg": "23.456.789-0",
+      "cpf": "111.444.777-35",
+      "address": "Avenida Afonso Pena, 2000, Belo Horizonte/MG",
+      "profession": "Engenheiro Civil",
+      "employers": [
+        { "name": "Construtora Horizonte", "income": 6200 }
+      ],
+      "createdAt": "2026-11-01T11:00:00.000Z"
+    },
+    {
+      "id": "c3",
+      "userId": "u3",
+      "name": "Carla Mendes",
+      "rg": "34.567.890-1",
+      "cpf": "123.456.789-09",
+      "address": "Rua da Bahia, 1500, Belo Horizonte/MG",
+      "profession": "Designer Gráfica",
+      "employers": [
+        { "name": "Estúdio Criativo", "income": 3800 },
+        { "name": "Freelance", "income": 1200 },
+        { "name": "Loja Online", "income": 800 }
+      ],
+      "createdAt": "2026-11-01T12:00:00.000Z"
+    }
+  ],
+  "cars": [
+    {
+      "id": "car1",
+      "registration": "MAT-001",
+      "year": 2024,
+      "brand": "Toyota",
+      "model": "Corolla",
+      "plate": "ABC1D23",
+      "dailyRate": 180,
+      "status": "AVAILABLE",
+      "ownerType": "COMPANY",
+      "ownerId": "u4"
+    },
+    {
+      "id": "car2",
+      "registration": "MAT-002",
+      "year": 2023,
+      "brand": "Honda",
+      "model": "Civic",
+      "plate": "DEF2G34",
+      "dailyRate": 220,
+      "status": "AVAILABLE",
+      "ownerType": "COMPANY",
+      "ownerId": "u4"
+    },
+    {
+      "id": "car3",
+      "registration": "MAT-003",
+      "year": 2024,
+      "brand": "Chevrolet",
+      "model": "Onix",
+      "plate": "GHI3J45",
+      "dailyRate": 120,
+      "status": "AVAILABLE",
+      "ownerType": "COMPANY",
+      "ownerId": "u4"
+    },
+    {
+      "id": "car4",
+      "registration": "MAT-004",
+      "year": 2023,
+      "brand": "Jeep",
+      "model": "Compass",
+      "plate": "JKL4M56",
+      "dailyRate": 250,
+      "status": "RENTED",
+      "ownerType": "BANK",
+      "ownerId": "u5"
+    },
+    {
+      "id": "car5",
+      "registration": "MAT-005",
+      "year": 2022,
+      "brand": "Hyundai",
+      "model": "HB20",
+      "plate": "MNO5P67",
+      "dailyRate": 110,
+      "status": "MAINTENANCE",
+      "ownerType": "COMPANY",
+      "ownerId": "u4"
+    }
+  ],
+  "rentalRequests": [
+    {
+      "id": "r1",
+      "clientId": "c1",
+      "carId": "car1",
+      "startDate": "2026-11-10",
+      "endDate": "2026-11-15",
+      "estimatedTotal": 900,
+      "status": "PENDING",
+      "notes": "Viagem de trabalho",
+      "reviewNotes": "",
+      "createdAt": "2026-11-05T09:00:00.000Z",
+      "updatedAt": "2026-11-05T09:00:00.000Z"
+    },
+    {
+      "id": "r2",
+      "clientId": "c2",
+      "carId": "car2",
+      "startDate": "2026-11-12",
+      "endDate": "2026-11-18",
+      "estimatedTotal": 1320,
+      "status": "UNDER_REVIEW",
+      "notes": "Viagem em família",
+      "reviewNotes": "",
+      "createdAt": "2026-11-05T09:30:00.000Z",
+      "updatedAt": "2026-11-05T10:00:00.000Z"
+    },
+    {
+      "id": "r3",
+      "clientId": "c3",
+      "carId": "car3",
+      "startDate": "2026-11-20",
+      "endDate": "2026-11-23",
+      "estimatedTotal": 360,
+      "status": "APPROVED",
+      "notes": "Uso urbano",
+      "reviewNotes": "Aprovado após análise de renda.",
+      "createdAt": "2026-11-04T14:00:00.000Z",
+      "updatedAt": "2026-11-05T08:00:00.000Z"
+    },
+    {
+      "id": "r4",
+      "clientId": "c3",
+      "carId": "car4",
+      "startDate": "2026-11-05",
+      "endDate": "2026-11-09",
+      "estimatedTotal": 1000,
+      "status": "ACTIVE",
+      "notes": "Viagem de fim de semana",
+      "reviewNotes": "Aprovado.",
+      "createdAt": "2026-11-02T10:00:00.000Z",
+      "updatedAt": "2026-11-05T10:00:00.000Z"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "ct1",
+      "rentalRequestId": "r4",
+      "clientId": "c3",
+      "carId": "car4",
+      "startDate": "2026-11-05",
+      "endDate": "2026-11-09",
+      "total": 1000,
+      "ownershipType": "BANK",
+      "creditContractId": "cc3",
+      "status": "ACTIVE",
+      "createdAt": "2026-11-05T10:00:00.000Z"
+    },
+    {
+      "id": "ct2",
+      "rentalRequestId": "r0",
+      "clientId": "c2",
+      "carId": "car5",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-04",
+      "total": 330,
+      "ownershipType": "COMPANY",
+      "creditContractId": null,
+      "status": "COMPLETED",
+      "createdAt": "2026-11-01T08:00:00.000Z"
+    }
+  ],
+  "creditContracts": [
+    {
+      "id": "cc1",
+      "bankId": "u5",
+      "clientId": "c1",
+      "amount": 5000,
+      "installments": 12,
+      "interestRate": 1.5,
+      "status": "APPROVED",
+      "createdAt": "2026-11-01T13:00:00.000Z"
+    },
+    {
+      "id": "cc2",
+      "bankId": "u5",
+      "clientId": "c2",
+      "amount": 3000,
+      "installments": 6,
+      "interestRate": 1.8,
+      "status": "PENDING",
+      "createdAt": "2026-11-02T09:00:00.000Z"
+    },
+    {
+      "id": "cc3",
+      "bankId": "u5",
+      "clientId": "c3",
+      "amount": 8000,
+      "installments": 24,
+      "interestRate": 1.2,
+      "status": "APPROVED",
+      "createdAt": "2026-11-03T09:00:00.000Z"
+    }
+  ]
 }
