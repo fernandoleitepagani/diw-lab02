@@ -51,8 +51,8 @@ de decisão entre cliente, locadora e banco."
 | Repositório GitHub com modelos e código final | histórico Git + repositório público |
 | Apresentação final: protótipo × modelos × mudanças | esta apresentação + `docs/demo-script.md` |
 
-**Fala sugerida:** "As três sprints do PDF estão cobertas; a diferença de
-tecnologia está documentada e será explicada no slide de mudanças."
+**Fala sugerida:** "As etapas do PDF estão cobertas; a stack e as decisões
+estão documentadas no slide 4 e nos ADRs."
 
 ---
 
@@ -71,8 +71,9 @@ tecnologia está documentada e será explicada no slide de mudanças."
 - **Offline:** Bootstrap e todo o código estão no repositório.
 - Decisões registradas nos ADRs 0001–0004.
 
-**Fala sugerida:** "O enunciado sugere Java/MVC. A entrega usa JavaScript puro
-com a mesma separação em camadas; o ADR 0001 registra o trade-off."
+**Fala sugerida:** "O enunciado pede HTML5, CSS3, JavaScript, Bootstrap 5 e
+JSON Server. A entrega usa exatamente essa stack, com separação em camadas; o
+ADR 0001 registra a decisão de não usar framework nem build."
 
 ---
 
@@ -187,9 +188,10 @@ views chamam o domínio e os repositórios."
 
 ## Slide 10 — Mudanças feitas durante o desenvolvimento
 
-1. **Stack:** o PDF pede Java/MVC; a entrega usa JavaScript puro com separação
-   em camadas equivalente, sem build e funcionando offline. Decisão e
-   trade-offs no [ADR 0001](adr/0001-vanilla-js-hash-router.md).
+1. **Stack:** o PDF pede HTML5, CSS3, JavaScript, Bootstrap 5 e JSON Server; a
+   entrega usa exatamente essa stack, com JavaScript puro em módulos, sem build
+   e funcionando offline. Decisão e trade-offs no
+   [ADR 0001](adr/0001-vanilla-js-hash-router.md).
 2. **Máquina de estados:** o fluxo inicial foi ampliado para 8 estados,
    separando `CONTRACTED` (contrato executado) de `ACTIVE` (locação iniciada)
    e `COMPLETED`; o contrato nasce `ACTIVE`.
@@ -246,8 +248,8 @@ todas documentadas no README."
 
 ## Slide 13 — Próximos passos
 
-- Migrar a persistência para um backend **Java/Spring Boot MVC**, mantendo o
-  contrato REST e as regras de domínio.
+- Migrar a persistência para um backend real (Node/Express, Spring Boot ou
+  equivalente), mantendo o contrato REST e as regras de domínio.
 - Hash de senha, autorização no servidor e sessão com expiração.
 - Transações para execução/conclusão de contrato.
 - Testes E2E automatizados do roteiro de demonstração.
@@ -255,7 +257,8 @@ todas documentadas no README."
 - Pagamento, calendário de disponibilidade e auditoria de acessibilidade.
 
 **Fala sugerida:** "O domínio puro foi desenhado para sobreviver à troca de
-persistência; o próximo passo natural é o backend Java que o enunciado pede."
+persistência; o próximo passo natural é um backend real, com autorização no
+servidor."
 
 ---
 

@@ -51,11 +51,10 @@ locadora gerenciam clientes e carros, analisam pedidos e operam os contratos.
 Agentes do banco gerenciam contratos de crédito, também analisam pedidos e
 acompanham os contratos de aluguel.
 
-O projeto foi desenvolvido para o Laboratório 02 da disciplina. O enunciado
-sugere Java com arquitetura MVC; nesta entrega a mesma separação de
-responsabilidades (apresentação, domínio, dados e API) foi implementada com
-**ES Modules em JavaScript**, sem framework e sem build. A decisão e os
-trade-offs estão registrados no
+O projeto foi desenvolvido para o Laboratório 02 da disciplina. O enunciado pede
+HTML5, CSS3 e JavaScript, Bootstrap 5 e JSON Server; a entrega usa exatamente
+essa stack, com separação de responsabilidades (apresentação, domínio, dados e
+API) e sem framework ou build. A decisão e os trade-offs estão registrados no
 [ADR 0001](docs/adr/0001-vanilla-js-hash-router.md).
 
 O valor entregue é um protótipo funcional, executável localmente, que cobre o
@@ -155,6 +154,16 @@ session.js + format.js
 - **`api`:** cliente `fetch` fino, com `ApiError`, URLs centralizadas e leitura
   de corpo.
 - **`session` / `format`:** sessão sem senha e formatação/escape para PT-BR.
+
+Alinhado ao enunciado, o sistema se divide em dois subsistemas:
+
+1. **Gestão de pedidos e contratos:** repositórios em `data/`, regras em
+   `domain/` e máquina de estados em `domain/request-state.js`.
+2. **Construção dinâmica das páginas:** router por hash, layout, componentes e
+   as 16 views que renderizam cada tela a partir dos dados da API.
+
+No recorte do laboratório, o JSON Server local faz o papel do servidor central;
+clientes e agentes acessam a mesma API pelo navegador.
 
 Padrões adotados: composition root, repository, funções puras de domínio,
 máquina de estados explícita e route guards.
@@ -361,9 +370,9 @@ Os dados iniciais estão em [db.seed.json](db.seed.json). A versão de execuçã
 | **Repositório GitHub atualizado, com modelos e código final.** | Repositório de destino: <https://github.com/fernandoleitepagani/diw-lab02>. O histórico local usa commits convencionais por etapa. |
 | **Apresentação final do protótipo, comparação com os modelos e mudanças.** | [Roteiro detalhado da demo](docs/demo-script.md), [roteiro de slides](docs/apresentacao.md) e [checklist de testes manuais](docs/manual-test.md). A comparação modelo→código está nos [diagramas UML](docs/uml/use-cases.md) e nos [ADRs](docs/adr/0001-vanilla-js-hash-router.md). |
 
-> **Observação sobre a stack:** o enunciado cita Java/MVC. Por decisão de escopo
-> documentada no [ADR 0001](docs/adr/0001-vanilla-js-hash-router.md), a entrega
-> usa JavaScript puro com a mesma separação em camadas. O CRUD de clientes, o
+> **Observação sobre a stack:** o enunciado pede HTML5, CSS3, JavaScript,
+> Bootstrap 5 e JSON Server. A entrega usa exatamente essa stack, com
+> JavaScript puro em módulos e separação em camadas. O CRUD de clientes, o
 > protótipo de pedidos e a modelagem exigida no PDF estão implementados e
 > demonstráveis.
 
