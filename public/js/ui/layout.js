@@ -1,4 +1,5 @@
 import { escapeHtml, agentTypeLabel, roleLabel } from '../format.js';
+import { clearSession } from '../session.js';
 
 /**
  * @typedef {Object} Session
@@ -108,13 +109,13 @@ export function renderLayout(container, session = null) {
     </nav>
   `;
 
-  container.querySelector('#logout-button')?.addEventListener('click', async () => {
-    try {
-      const sessionModule = await import('./session.js');
-      sessionModule.clearSession?.();
-    } catch {
-      // Session module is introduced in a later task; nothing to clear yet.
+  container.querySelector('#logout-button')?.addEventListener('click', () => {
+    clearSession();
+
+    if (window.location.hash === '#/login') {
+      window.dispatchEvent(new HashChangeEvent('hashchange'));
+    } else {
+      window.location.hash = '#/login';
     }
-    window.location.hash = '#/login';
   });
 }

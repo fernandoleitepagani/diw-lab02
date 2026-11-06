@@ -38,6 +38,20 @@ function buildUrl(collection, params = {}) {
 }
 
 /**
+ * Builds `/collection/id`, encoding each path segment separately so the
+ * separator slash stays literal.
+ * @param {string} collection
+ * @param {string|number} id
+ * @returns {string}
+ */
+function buildItemUrl(collection, id) {
+  return new URL(
+    `${API_BASE}/${encodeURIComponent(collection)}/${encodeURIComponent(String(id))}`,
+    window.location.origin,
+  ).toString();
+}
+
+/**
  * @param {Response} response
  * @returns {Promise<unknown>}
  */
@@ -82,7 +96,7 @@ export async function apiList(collection, params = {}) {
  * @returns {Promise<Record<string, unknown>>}
  */
 export async function apiGet(collection, id) {
-  const response = await fetch(buildUrl(`${collection}/${encodeURIComponent(String(id))}`), {
+  const response = await fetch(buildItemUrl(collection, id), {
     headers: { Accept: 'application/json' },
   });
   return /** @type {Record<string, unknown>} */ (await assertOk(response));
@@ -109,7 +123,7 @@ export async function apiCreate(collection, data) {
  * @returns {Promise<Record<string, unknown>>}
  */
 export async function apiUpdate(collection, id, data) {
-  const response = await fetch(buildUrl(`${collection}/${encodeURIComponent(String(id))}`), {
+  const response = await fetch(buildItemUrl(collection, id), {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify(data),
@@ -124,7 +138,7 @@ export async function apiUpdate(collection, id, data) {
  * @returns {Promise<Record<string, unknown>>}
  */
 export async function apiPatch(collection, id, data) {
-  const response = await fetch(buildUrl(`${collection}/${encodeURIComponent(String(id))}`), {
+  const response = await fetch(buildItemUrl(collection, id), {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify(data),
@@ -138,7 +152,7 @@ export async function apiPatch(collection, id, data) {
  * @returns {Promise<void>}
  */
 export async function apiDelete(collection, id) {
-  const response = await fetch(buildUrl(`${collection}/${encodeURIComponent(String(id))}`), {
+  const response = await fetch(buildItemUrl(collection, id), {
     method: 'DELETE',
     headers: { Accept: 'application/json' },
   });
