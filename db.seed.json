@@ -39,7 +39,6 @@
       "email": "locadora@move.com",
       "password": "123456",
       "role": "agent",
-      "clientId": null,
       "agentType": "COMPANY",
       "organization": "Locadora Move",
       "createdAt": "2026-11-01T08:00:00.000Z"
@@ -50,7 +49,6 @@
       "email": "banco@aurora.com",
       "password": "123456",
       "role": "agent",
-      "clientId": null,
       "agentType": "BANK",
       "organization": "Banco Aurora",
       "createdAt": "2026-11-01T09:00:00.000Z"
@@ -239,7 +237,6 @@
       "endDate": "2026-11-04",
       "total": 330,
       "ownershipType": "COMPANY",
-      "creditContractId": null,
       "status": "COMPLETED",
       "createdAt": "2026-11-01T08:00:00.000Z"
     }

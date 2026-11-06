@@ -18,6 +18,19 @@ collection, and supports the HTTP methods used by the `api.js` wrapper. The
 authoritative seed lives in `db.seed.json`; `scripts/ensure-db.mjs` copies it to
 `db.json` on first start, and `db.json` is gitignored.
 
+## Foreign-key null bug
+
+`json-server@0.17.4` scans every key ending in `Id` when handling `DELETE`. Its
+`getRemovable()` helper calls `lodash-id.getById()` for each value, and a `null`
+value makes it evaluate `null.toString()`, so the request fails with HTTP 500.
+The same scan treats a null foreign key as a dangling reference and can delete
+unrelated records whose own optional `*Id` key is null, such as agent users
+without a `clientId`.
+
+**Rule:** omit optional `*Id` fields from seed and runtime records instead of
+storing `null`. Missing keys are ignored by the scan, and application code
+normalizes them to `null` only in memory when needed.
+
 ## Consequences
 
 - Installation is one package and one lockfile.

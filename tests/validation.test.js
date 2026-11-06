@@ -261,6 +261,20 @@ test('seed data matches the delivery counts and validates', () => {
     ['Ana Souza', 'Bruno Lima', 'Carla Mendes', 'Locadora Move', 'Banco Aurora'],
   );
   assert.ok(seed.users.every((user) => user.password === '123456'));
+  for (const agent of seed.users.filter((user) => user.role === 'agent')) {
+    assert.equal(Object.hasOwn(agent, 'clientId'), false, agent.name);
+  }
+
+  // json-server@0.17.4 crashes on any null foreign key during DELETE.
+  for (const records of Object.values(seed)) {
+    for (const record of records) {
+      for (const [key, value] of Object.entries(record)) {
+        if (key.endsWith('Id')) {
+          assert.notEqual(value, null, `${record.id} has a null ${key}`);
+        }
+      }
+    }
+  }
 
   for (const client of seed.clients) {
     assert.equal(validateClient(client).ok, true, client.name);
@@ -289,6 +303,8 @@ test('seed data matches the delivery counts and validates', () => {
     seed.contracts.map((contract) => contract.status),
     ['ACTIVE', 'COMPLETED'],
   );
+  const historicalContract = seed.contracts.find((contract) => contract.id === 'ct2');
+  assert.equal(Object.hasOwn(historicalContract, 'creditContractId'), false);
   for (const contract of seed.contracts) {
     assert.equal(validateContract(contract).ok, true, contract.id);
   }

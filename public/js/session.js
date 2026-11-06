@@ -98,7 +98,7 @@ export function setSession(user) {
     email: String(user.email ?? ''),
     role: user.role,
     agentType: normalizeAgentType(user.agentType),
-    clientId: user.clientId === undefined || user.clientId === null ? null : String(user.clientId),
+    clientId: user.clientId ?? null,
   };
 
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
