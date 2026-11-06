@@ -9,7 +9,7 @@ import {
   startRental,
 } from '../../data/contracts.js';
 import { getCreditContract } from '../../data/credit-contracts.js';
-import { getRequest, listRequests, listRequestsForClient } from '../../data/requests.js';
+import { listRequests, listRequestsForClient } from '../../data/requests.js';
 import { listUsers } from '../../data/users.js';
 import { canReviewRequests, canViewRequest, isClient } from '../../domain/permissions.js';
 import { REQUEST_STATUS } from '../../domain/request-state.js';
@@ -450,9 +450,21 @@ async function renderDetail(container, context, session, contractId) {
     return;
   }
 
-  const request = contract.rentalRequestId
-    ? await orFallback(getRequest(contract.rentalRequestId), null)
-    : null;
+  /** @type {Record<string, unknown>|null} */
+  let request = null;
+  if (contract.rentalRequestId) {
+    try {
+      const requests = isClient(session)
+        ? await listRequestsForClient(session.clientId)
+        : await listRequests();
+      request =
+        requests.find(
+          (candidate) => String(candidate.id) === String(contract.rentalRequestId),
+        ) ?? null;
+    } catch {
+      request = null;
+    }
+  }
 
   const clientView = isClient(session);
   if (clientView) {
