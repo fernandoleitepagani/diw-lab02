@@ -1,0 +1,15 @@
+{
+  "name": "diw-lab02",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sistema de aluguel de carros - Laboratorio 02 de Desenvolvimento de Interfaces Web",
+  "scripts": {
+    "start": "node scripts/ensure-db.mjs && json-server --watch db.json --static public --port 3000",
+    "reset": "node scripts/ensure-db.mjs --force",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "json-server": "0.17.4"
+  }
+}

@@ -1,0 +1,17 @@
+/* Small overrides on top of Bootstrap. Keep this file free of Bootstrap copies. */
+
+body {
+  min-height: 100vh;
+}
+
+#app {
+  max-width: 1100px;
+}
+
+.placeholder-view {
+  min-height: 12rem;
+}
+
+.navbar-brand {
+  letter-spacing: 0.02em;
+}
