@@ -3,7 +3,7 @@ import { getClient } from '../../data/clients.js';
 import { ContractWorkflowError, executeContract } from '../../data/contracts.js';
 import { listApprovedCreditContractsForClient } from '../../data/credit-contracts.js';
 import { getRequest } from '../../data/requests.js';
-import { canExecuteContract } from '../../domain/permissions.js';
+import { canExecuteContract, isClient } from '../../domain/permissions.js';
 import { validateContract } from '../../domain/validation.js';
 import { escapeHtml, formatBRL } from '../../format.js';
 import { navigate } from '../../router.js';
@@ -118,7 +118,7 @@ function creditContractOption(creditContract) {
 export async function render(container, context = {}) {
   const session = context.session ?? getSession();
 
-  if (!session || session.role !== 'client') {
+  if (!session || !isClient(session)) {
     renderBlocked(container, 'Apenas clientes podem executar contratos.');
     return;
   }

@@ -40,6 +40,15 @@ function normalizeAgentType(agentType) {
 }
 
 /**
+ * @param {unknown} clientId
+ * @returns {string|null}
+ */
+function normalizeClientId(clientId) {
+  if (clientId === undefined || clientId === null || clientId === '') return null;
+  return String(clientId);
+}
+
+/**
  * @param {string} path
  * @returns {void}
  */
@@ -70,8 +79,7 @@ export function getSession() {
       email: String(parsed.email ?? ''),
       role: parsed.role,
       agentType: normalizeAgentType(parsed.agentType),
-      clientId:
-        parsed.clientId === undefined || parsed.clientId === null ? null : String(parsed.clientId),
+      clientId: normalizeClientId(parsed.clientId),
     };
   } catch {
     return null;
@@ -98,7 +106,7 @@ export function setSession(user) {
     email: String(user.email ?? ''),
     role: user.role,
     agentType: normalizeAgentType(user.agentType),
-    clientId: user.clientId ?? null,
+    clientId: normalizeClientId(user.clientId),
   };
 
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(session));

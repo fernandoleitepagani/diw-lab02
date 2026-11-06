@@ -83,7 +83,6 @@ const REQUEST_STATUS_LABELS = Object.freeze({
 const ROLE_LABELS = Object.freeze({
   client: 'Cliente',
   agent: 'Agente',
-  admin: 'Administrador',
 });
 
 const AGENT_TYPE_LABELS = Object.freeze({

@@ -1,5 +1,6 @@
 import { findClientForUser, totalIncome, updateClient } from '../../data/clients.js';
 import { formatCpf, isValidCpf } from '../../domain/cpf.js';
+import { isClient } from '../../domain/permissions.js';
 import { MAX_EMPLOYERS, validateClient } from '../../domain/validation.js';
 import { escapeHtml, formatBRL } from '../../format.js';
 import { navigate } from '../../router.js';
@@ -512,7 +513,7 @@ function renderProfile(container, client, session) {
  */
 export async function render(container, context = {}) {
   const session = context.session ?? getSession();
-  if (!session || session.role !== 'client') {
+  if (!session || !isClient(session)) {
     navigate('/');
     return;
   }

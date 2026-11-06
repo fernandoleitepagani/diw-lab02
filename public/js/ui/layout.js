@@ -1,3 +1,4 @@
+import { isAgent, isBankAgent, isClient } from '../domain/permissions.js';
 import { escapeHtml, agentTypeLabel, roleLabel } from '../format.js';
 import { clearSession } from '../session.js';
 
@@ -23,7 +24,7 @@ function linksFor(session) {
     ];
   }
 
-  if (session.role === 'client') {
+  if (isClient(session)) {
     return [
       { href: '#/', label: 'Dashboard' },
       { href: '#/requests', label: 'Meus pedidos' },
@@ -32,7 +33,7 @@ function linksFor(session) {
     ];
   }
 
-  if (session.role === 'agent' && session.agentType === 'BANK') {
+  if (isBankAgent(session)) {
     return [
       { href: '#/', label: 'Dashboard' },
       { href: '#/clients', label: 'Clientes' },
@@ -42,7 +43,7 @@ function linksFor(session) {
     ];
   }
 
-  if (session.role === 'agent') {
+  if (isAgent(session)) {
     return [
       { href: '#/', label: 'Dashboard' },
       { href: '#/clients', label: 'Clientes' },
@@ -78,7 +79,7 @@ export function renderLayout(container, session = null) {
       <span class="navbar-text small me-3">
         ${escapeHtml(session.name)}
         <span class="text-body-secondary">(${escapeHtml(roleLabel(session.role))}${
-          session.role === 'agent' && session.agentType
+          isAgent(session) && session.agentType
             ? ` · ${escapeHtml(agentTypeLabel(session.agentType))}`
             : ''
         })</span>

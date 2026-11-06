@@ -416,10 +416,12 @@ async function renderDetail(container, context, session, requestId) {
       setBusy(true);
       try {
         assertTransition(String(request.status), transition, 'agent');
+        const writesReviewNotes =
+          transition === REQUEST_STATUS.APPROVED || transition === REQUEST_STATUS.REJECTED;
         await updateRequest(request.id, {
           ...request,
           status: transition,
-          reviewNotes: notes,
+          ...(writesReviewNotes ? { reviewNotes: notes } : {}),
           updatedAt: new Date().toISOString(),
         });
         showToast(

@@ -1,3 +1,4 @@
+import { isAgent, isBankAgent, isClient } from '../../domain/permissions.js';
 import { agentTypeLabel, escapeHtml, roleLabel } from '../../format.js';
 import { getSession } from '../../session.js';
 
@@ -12,7 +13,7 @@ import { getSession } from '../../session.js';
 function actionsFor(session) {
   if (!session) return [];
 
-  if (session.role === 'client') {
+  if (isClient(session)) {
     return [
       {
         title: 'Novo pedido',
@@ -41,7 +42,7 @@ function actionsFor(session) {
     ];
   }
 
-  if (session.role === 'agent' && session.agentType === 'BANK') {
+  if (isBankAgent(session)) {
     return [
       {
         title: 'Clientes',
@@ -70,7 +71,7 @@ function actionsFor(session) {
     ];
   }
 
-  if (session.role === 'agent') {
+  if (isAgent(session)) {
     return [
       {
         title: 'Clientes',
@@ -123,7 +124,7 @@ export function render(container, context = {}) {
   }
 
   const roleText =
-    session.role === 'agent' && session.agentType
+    isAgent(session) && session.agentType
       ? `Agente · ${agentTypeLabel(session.agentType)}`
       : roleLabel(session.role);
 
